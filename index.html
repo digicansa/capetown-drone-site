@@ -212,8 +212,7 @@
       <div id="thankyou-message" class="hidden text-green-600 text-center font-semibold mb-4">
         Thank you for contacting us! We'll get back to you soon.
       </div>
-      <form action="https://formsubmit.co/lincoln.naicker@gmail.com" method="POST" class="space-y-6" data-aos="fade-up">
-        <input type="hidden" name="_autoresponse" value="Thank you for contacting us! We'll get back to you soon.">
+      <form id="contact-form" action="https://formsubmit.co/lincoln.naicker@gmail.com" method="POST" class="space-y-6" data-aos="fade-up">
         <input type="hidden" name="_captcha" value="false">
         <input type="text" name="_honey" style="display:none">
         <div>
@@ -263,6 +262,40 @@
           e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth' });
         }
+      });
+    });
+  </script>
+  <script>
+    const form = document.getElementById('contact-form');
+    const thankyouMessage = document.getElementById('thankyou-message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent default form submission
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+            'Accept': 'application/json' // Required for Formsubmit AJAX
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // On successful submission
+          form.reset(); // Clear the form fields
+          form.style.display = 'none'; // Optionally hide the form
+          thankyouMessage.classList.remove('hidden'); // Show the thank you message
+        } else {
+          // Handle errors (e.g., show an error message)
+          console.error('Form submission failed');
+          alert('Oops! There was a problem submitting your form. Please try again.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Oops! An error occurred. Please try again.');
       });
     });
   </script>
