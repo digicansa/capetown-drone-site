@@ -65,7 +65,7 @@
       margin: 0 auto; /* Gives that scrolling effect as the typing happens */
       letter-spacing: .15em; /* Adjust as needed */
       animation:
-        typing 2s steps(30, end), /* Changed from 4s to 2s */
+        typing 2s steps(30, end) forwards, /* Added forwards to keep final state */
         blink-caret .75s step-end infinite;
     }
 
@@ -79,6 +79,25 @@
     @keyframes blink-caret {
       from, to { border-color: transparent }
       50% { border-color: orange; }
+    }
+
+    /* Media Query for mobile */
+    @media (max-width: 767px) { /* Adjust breakpoint as needed */
+      .typewriter h1 {
+        white-space: normal; /* Allow text to wrap on mobile */
+        overflow: visible; /* Allow overflowing content to be visible */
+        border-right: none; /* Remove cursor on mobile */
+        animation: none; /* Disable typing and blink animation on mobile */
+        letter-spacing: normal; /* Reset letter spacing */
+        width: auto; /* Allow width to adjust to content */
+        text-align: center; /* Ensure text is centered */
+        margin: 0 auto; /* Keep centered */
+      }
+
+      /* Ensure the parent container also allows content */
+      .typewriter {
+        width: 100%; /* Ensure the parent div takes full width */
+      }
     }
   </style>
 </head>
