@@ -54,15 +54,15 @@
       to { transform: scale(1.04); }
     }
 
-    /* Typing Animation */
+    /* Typing Animation for Desktop */
     .typewriter h1 {
-      overflow: hidden; /* Ensures the content is not revealed until the animation */
-      border-right: .15em solid orange; /* The typwriter cursor */
-      white-space: nowrap; /* Keeps the text on a single line */
-      margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-      letter-spacing: .15em; /* Adjust as needed */
+      overflow: hidden;
+      border-right: .15em solid orange;
+      white-space: nowrap; /* Required for typing effect */
+      margin: 0 auto;
+      letter-spacing: .15em;
       animation:
-        typing 2s steps(30, end) forwards, /* Added forwards to keep final state */
+        typing 2s steps(30, end) forwards,
         blink-caret .75s step-end infinite;
     }
 
@@ -78,13 +78,26 @@
       50% { border-color: orange; }
     }
 
+    /* New animation for mobile title */
+    @keyframes fadeInUpMobile {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* Media Query for mobile */
     @media (max-width: 767px) { /* Adjust breakpoint as needed */
       .typewriter h1 {
         white-space: normal; /* Allow text to wrap on mobile */
         overflow: visible; /* Allow overflowing content to be visible */
         border-right: none; /* Remove cursor on mobile */
-        animation: none !important; /* Disable typing and blink animation on mobile - Use !important for strong override */
+        /* Replace animation: none !important; with the new mobile animation */
+        animation: fadeInUpMobile 1s ease-out forwards; /* Apply new animation */
         letter-spacing: normal; /* Reset letter spacing */
         width: auto; /* Allow width to adjust to content */
         text-align: center; /* Ensure text is centered */
@@ -98,7 +111,6 @@
 
       /* Ensure hero-parallax animation is NOT disabled on mobile */
       .hero-parallax {
-         /* animation is kept from the general rule above */
          background-attachment: scroll; /* Ensure parallax is off on mobile */
       }
     }
@@ -224,7 +236,7 @@
           <a href="https://pay.test.com/real-estate-shoot" class="block text-center bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
             Book Now
           </a>
-  </div>
+        </div>
 
         <!-- Family Beach Reel -->
         <div class="bg-white rounded-xl shadow-lg p-8 hover-scale" data-aos="fade-up" data-aos-delay="300">
