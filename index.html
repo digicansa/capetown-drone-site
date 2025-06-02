@@ -33,10 +33,11 @@
 
   <style>
     body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-    .hero-parallax { 
-        background-position: center; 
-        background-repeat: no-repeat; 
-        background-size: cover; 
+    .hero-parallax {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        animation: heroZoom 10s ease-in-out infinite alternate;
     }
     @media (min-width: 768px) {
         .hero-parallax {
@@ -87,7 +88,7 @@
         white-space: normal; /* Allow text to wrap on mobile */
         overflow: visible; /* Allow overflowing content to be visible */
         border-right: none; /* Remove cursor on mobile */
-        animation: none; /* Disable typing and blink animation on mobile */
+        animation: none !important; /* Disable typing and blink animation on mobile - Use !important for strong override */
         letter-spacing: normal; /* Reset letter spacing */
         width: auto; /* Allow width to adjust to content */
         text-align: center; /* Ensure text is centered */
@@ -97,6 +98,12 @@
       /* Ensure the parent container also allows content */
       .typewriter {
         width: 100%; /* Ensure the parent div takes full width */
+      }
+
+      /* Ensure hero-parallax animation is NOT disabled on mobile */
+      .hero-parallax {
+         /* animation is kept from the general rule above */
+         background-attachment: scroll; /* Ensure parallax is off on mobile */
       }
     }
   </style>
