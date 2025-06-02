@@ -56,6 +56,30 @@
         transform: scale(1.08);
       }
     }
+
+    /* Typing Animation */
+    .typewriter h1 {
+      overflow: hidden; /* Ensures the content is not revealed until the animation */
+      border-right: .15em solid orange; /* The typwriter cursor */
+      white-space: nowrap; /* Keeps the text on a single line */
+      margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+      letter-spacing: .15em; /* Adjust as needed */
+      animation:
+        typing 4s steps(30, end), /* 30 is the number of characters in the title */
+        blink-caret .75s step-end infinite;
+    }
+
+    /* The typing effect */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    /* The typewriter cursor effect */
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: orange; }
+    }
   </style>
 </head>
 <body class="bg-white">
@@ -81,7 +105,9 @@
     </div>
     <div class="absolute inset-0 gradient-overlay"></div>
     <div class="relative z-10 text-center text-white px-4" data-aos="fade-up">
-      <h1 class="text-3xl md:text-6xl font-bold mb-4 md:mb-6">Capture Your Cape Town Moments</h1>
+      <div class="typewriter">
+        <h1 class="text-3xl md:text-6xl font-bold mb-4 md:mb-6">Capture Your Cape Town Moments</h1>
+      </div>
       <p class="text-lg md:text-2xl mb-6 md:mb-8">Professional Drone Photography & Videography</p>
       <a href="#packages" class="bg-white text-blue-600 px-6 md:px-8 py-2 md:py-3 rounded-full font-semibold hover:bg-blue-50 transition duration-300 inline-block">Book Your Shoot</a>
     </div>
